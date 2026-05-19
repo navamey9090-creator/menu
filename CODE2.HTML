@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Mindful - Case Study</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#6366f1",
+                        "tertiary": "#7c3aed",
+                        "background": "#e8eaf0",
+                        "on-surface": "#2e3040",
+                        "on-surface-variant": "#585a68",
+                        "brand-green": "#a3b899",
+                        "surface-container-highest": "#d6d8de",
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                    "boxShadow": {
+                        'neo-raised': '6px 6px 12px rgba(0,0,0,0.08), -6px -6px 12px rgba(255,255,255,0.6)',
+                        'neo-pressed': 'inset 4px 4px 8px rgba(0,0,0,0.06), inset -4px -4px 8px rgba(255,255,255,0.5)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #e8eaf0;
+            color: #2e3040;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined.filled { font-variation-settings: 'FILL' 1; }
+
+        .neo-raised {
+            box-shadow: 6px 6px 12px rgba(0,0,0,0.08), -6px -6px 12px rgba(255,255,255,0.6);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .neo-raised:hover {
+            transform: translateY(-4px);
+            box-shadow: 10px 10px 20px rgba(0,0,0,0.06), -10px -10px 20px rgba(255,255,255,0.8);
+        }
+        .neo-inset {
+            box-shadow: inset 4px 4px 8px rgba(0,0,0,0.06), inset -4px -4px 8px rgba(255,255,255,0.5);
+        }
+        .neo-button-active {
+            box-shadow: inset 4px 4px 8px rgba(0,0,0,0.06), inset -4px -4px 8px rgba(255,255,255,0.5) !important;
+            transform: translateY(1px) !important;
+        }
+        .reveal-hidden {
+            opacity: 0;
+            transform: translateY(30px);
+            filter: blur(5px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+        .magnetic-wrap { display: inline-block; transition: transform 0.3s; }
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: #6366f1;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased">
+    <div id="scroll-progress"></div>
+
+    <nav class="w-full sticky top-0 z-50 bg-background/80 backdrop-blur-md shadow-neo-raised">
+        <div class="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
+            <div class="text-2xl font-semibold text-primary">Mindful</div>
+            <div class="hidden md:flex gap-4 font-semibold text-on-surface-variant">
+                <a class="hover:text-primary transition-colors" href="#hero">Case Study</a>
+                <a class="hover:text-primary transition-colors" href="#research">Research</a>
+                <a class="hover:text-primary transition-colors" href="#design-system">Design</a>
+                <a class="hover:text-primary transition-colors" href="#results">Results</a>
+            </div>
+            <div class="magnetic-wrap">
+                <button class="neo-raised bg-background text-primary font-bold py-2 px-6 rounded-xl">Contact Me</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow w-full max-w-5xl mx-auto px-6 md:px-12 py-16 space-y-32">
+        <!-- 1. Hero Section -->
+        <section id="hero" class="flex flex-col items-center text-center space-y-8 reveal-hidden">
+            <div class="inline-block px-4 py-1.5 rounded-full neo-inset text-sm font-medium text-tertiary mb-4">
+                UX/UI Case Study
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold text-on-surface tracking-tight">Mindful</h1>
+            <p class="text-xl md:text-2xl text-on-surface-variant max-w-2xl leading-relaxed">
+                A mental wellness companion designed to bring calm and clarity to your daily routine through intuitive tracking and guided practices.
+            </p>
+        </section>
+
+        <!-- 2. Problem Statement -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center reveal-hidden">
+            <div class="space-y-6">
+                <h2 class="text-3xl font-bold text-on-surface">The Challenge</h2>
+                <p class="text-lg text-on-surface-variant leading-relaxed">
+                    In today's fast-paced world, managing stress is increasingly difficult. Users feel overwhelmed by complex apps. The challenge was to create an emotionally supportive experience.
+                </p>
+            </div>
+            <div class="bg-background shadow-neo-raised p-8 rounded-3xl space-y-4">
+                <div class="w-12 h-12 rounded-full neo-inset flex items-center justify-center text-primary mb-6">
+                    <span class="material-symbols-outlined filled">psychology</span>
+                </div>
+                <h3 class="text-xl font-semibold">Key Friction Points</h3>
+                <ul class="space-y-3 text-on-surface-variant">
+                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-sm text-red-500">close</span> Overwhelming interfaces</li>
+                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-sm text-red-500">close</span> Lack of personalized guidance</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 3. User Research Insights -->
+        <section id="research" class="space-y-12 reveal-hidden">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-on-surface mb-4">Research Insights</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="neo-raised p-8 rounded-3xl text-center flex flex-col items-center">
+                    <div class="text-4xl font-bold text-tertiary mb-2">78%</div>
+                    <p class="text-sm font-medium text-on-surface-variant">seek quick relief</p>
+                </div>
+                <div class="neo-raised p-8 rounded-3xl text-center flex flex-col items-center">
+                    <div class="text-4xl font-bold text-primary mb-2">64%</div>
+                    <p class="text-sm font-medium text-on-surface-variant">desire visual progress</p>
+                </div>
+                <div class="neo-raised p-8 rounded-3xl text-center flex flex-col items-center">
+                    <div class="text-4xl font-bold text-brand-green mb-2">82%</div>
+                    <p class="text-sm font-medium text-on-surface-variant">need aesthetic calm</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Target Personas -->
+        <section class="space-y-12 reveal-hidden">
+            <h2 class="text-3xl font-bold text-on-surface text-center">Target Personas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Persona 1 -->
+                <div class="bg-background shadow-neo-raised p-8 rounded-3xl flex flex-col">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 rounded-full neo-inset overflow-hidden">
+                            <img alt="Sarah" class="w-full h-full object-cover grayscale" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200"/>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Sarah, 29</h3>
+                            <p class="text-sm text-on-surface-variant">The Stressed Professional</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="p-4 rounded-xl neo-inset">
+                            <h4 class="text-sm font-semibold mb-1 text-primary">Goals</h4>
+                            <p class="text-sm text-on-surface-variant">Manage work anxiety, improve sleep quality.</p>
+                        </div>
+                        <div class="p-4 rounded-xl neo-inset">
+                            <h4 class="text-sm font-semibold mb-1 text-red-500">Pain Points</h4>
+                            <p class="text-sm text-on-surface-variant">No time for long sessions, feels overwhelmed.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Persona 2 -->
+                <div class="bg-background shadow-neo-raised p-8 rounded-3xl flex flex-col">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 rounded-full neo-inset overflow-hidden">
+                            <img alt="David" class="w-full h-full object-cover grayscale" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200"/>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">David, 21</h3>
+                            <p class="text-sm text-on-surface-variant">The Overwhelmed Student</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="p-4 rounded-xl neo-inset">
+                            <h4 class="text-sm font-semibold mb-1 text-primary">Goals</h4>
+                            <p class="text-sm text-on-surface-variant">Build habits, reduce exam stress.</p>
+                        </div>
+                        <div class="p-4 rounded-xl neo-inset">
+                            <h4 class="text-sm font-semibold mb-1 text-red-500">Pain Points</h4>
+                            <p class="text-sm text-on-surface-variant">Easily distracted, irregular schedule.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final UI Design -->
+        <section class="space-y-12 reveal-hidden">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-on-surface mb-4">Final UI Design</h2>
+            </div>
+            <div class="w-full p-6 rounded-[2.5rem] bg-background shadow-neo-raised overflow-hidden flex justify-center neo-raised">
+                <img alt="Mindful App" class="w-full max-w-4xl h-auto object-cover rounded-2xl" src="https://lh3.googleusercontent.com/aida/ADBb0uhKSAMfiCD5wJqfQMUkMgkPxWMFptMlFduGUzrl1GEyNuwWlhXuldDaUGOPJ5323IWXS6kOpbcuKq2Tby-UBaHPlGr14blE5wPs0Eq2ToaxvZN0Xsk3XBaozS2BpWGJXu2jGtwpI9u--6qFmpLDGHlQpKnnC4GBPn0tDW2K98DC6AnJE_tNSch4Y1hAENMpT9Me-KMRczJPBlUWabjlLwIYHIqM5_k-iPuO-8uyKNjfi2POJ0598aD9dqM"/>
+            </div>
+        </section>
+
+        <!-- Design System: Silk (Typography & Colors) -->
+        <section id="design-system" class="space-y-12 reveal-hidden">
+            <h2 class="text-3xl font-bold text-on-surface text-center">Design System: Silk</h2>
+            <div class="bg-background shadow-neo-raised p-10 rounded-[2.5rem] space-y-12">
+                <!-- Typography Section -->
+                <div class="space-y-8">
+                    <h3 class="text-xs font-black text-on-surface-variant uppercase tracking-widest">Typography</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                        <div class="flex items-baseline gap-6">
+                            <div class="text-8xl font-extrabold text-primary">Aa</div>
+                            <div>
+                                <p class="text-2xl font-bold">Plus Jakarta Sans</p>
+                                <p class="text-on-surface-variant">Friendly, modern, geometric sans-serif.</p>
+                            </div>
+                        </div>
+                        <div class="bg-background neo-inset p-8 rounded-2xl space-y-6">
+                            <div>
+                                <p class="text-[10px] font-black text-on-surface-variant uppercase mb-2">Heading (Bold)</p>
+                                <p class="text-3xl font-bold">The quick brown fox</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-black text-on-surface-variant uppercase mb-2">Body (Medium)</p>
+                                <p class="text-base font-medium text-on-surface-variant leading-relaxed">Jumps over the lazy dog and rests peacefully under the shade.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Colors Section -->
+                <div class="space-y-8">
+                    <h3 class="text-xs font-black text-on-surface-variant uppercase tracking-widest">Color Palette</h3>
+                    <div class="flex flex-wrap gap-8">
+                        <div class="flex flex-col items-center gap-3">
+                            <div class="w-20 h-20 rounded-2xl bg-background neo-raised"></div>
+                            <span class="text-xs font-bold text-on-surface-variant">#E8EAF0</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-3">
+                            <div class="w-20 h-20 rounded-2xl bg-primary neo-raised"></div>
+                            <span class="text-xs font-bold text-on-surface-variant">#6366F1</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-3">
+                            <div class="w-20 h-20 rounded-2xl bg-brand-green neo-raised"></div>
+                            <span class="text-xs font-bold text-on-surface-variant">#A3B899</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-3">
+                            <div class="w-20 h-20 rounded-2xl bg-tertiary neo-raised"></div>
+                            <span class="text-xs font-bold text-on-surface-variant">#7C3AED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Components Sneak Peek -->
+                <div class="space-y-8">
+                    <h3 class="text-xs font-black text-on-surface-variant uppercase tracking-widest">Key Components</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 p-10 bg-background rounded-3xl neo-inset items-center justify-items-center">
+                        <button class="px-8 py-3 rounded-xl neo-raised text-primary font-bold w-full">Start</button>
+                        <button class="px-8 py-3 rounded-xl neo-inset text-on-surface-variant font-medium w-full">Pressed</button>
+                        <div class="w-14 h-14 rounded-full neo-raised flex items-center justify-center text-primary"><span class="material-symbols-outlined filled">play_arrow</span></div>
+                        <div class="w-full bg-background neo-inset rounded-xl py-3 px-4 text-xs text-on-surface-variant/60">Search...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact & Results -->
+        <section id="results" class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal-hidden">
+            <div class="neo-raised p-10 rounded-3xl text-center space-y-2">
+                <div class="text-5xl font-bold text-primary">4.8/5</div>
+                <p class="font-bold text-on-surface-variant">Rating</p>
+            </div>
+            <div class="neo-raised p-10 rounded-3xl text-center space-y-2">
+                <div class="text-5xl font-bold text-brand-green">+45%</div>
+                <p class="font-bold text-on-surface-variant">Engagement</p>
+            </div>
+            <div class="neo-raised p-10 rounded-3xl text-center space-y-2">
+                <div class="text-5xl font-bold text-tertiary">3.5m</div>
+                <p class="font-bold text-on-surface-variant">Sessions</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-background w-full mt-20 shadow-neo-raised py-16">
+        <div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-2xl font-bold">Mindful</div>
+            <p class="text-sm font-bold text-on-surface-variant">© 2024 Mindful Case Study. Crafted with Silk.</p>
+            <div class="flex gap-8">
+                <a href="#" class="text-on-surface-variant hover:text-primary font-bold transition-colors">LinkedIn</a>
+                <a href="#" class="text-on-surface-variant hover:text-primary font-bold transition-colors">Behance</a>
+                <a href="#" class="text-on-surface-variant hover:text-primary font-bold transition-colors">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+        document.addEventListener('DOMContentLoaded', () => {
+            // Magnetic effect
+            const wraps = document.querySelectorAll('.magnetic-wrap');
+            wraps.forEach(wrap => {
+                wrap.addEventListener('mousemove', (e) => {
+                    const btn = wrap.querySelector('.neo-raised');
+                    const rect = wrap.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+                });
+                wrap.addEventListener('mouseleave', () => {
+                    wrap.querySelector('.neo-raised').style.transform = '';
+                });
+            });
+
+            // Scroll progress
+            window.addEventListener('scroll', () => {
+                const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+                document.getElementById('scroll-progress').style.width = scrolled + '%';
+            });
+
+            // Reveal animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('reveal-visible');
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal-hidden').forEach(el => observer.observe(el));
+
+            // Click interaction
+            document.querySelectorAll('.neo-raised').forEach(el => {
+                el.addEventListener('mousedown', () => el.classList.add('neo-button-active'));
+                el.addEventListener('mouseup', () => el.classList.remove('neo-button-active'));
+                el.addEventListener('mouseleave', () => el.classList.remove('neo-button-active'));
+            });
+        });
+    </script>
+</body>
+</html>
